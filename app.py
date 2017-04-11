@@ -20,11 +20,11 @@ def login():
 @app.route('/authenticate', methods=["POST"])
 def authenticate():
   response = spotify_auth.get_access_token(request.json['code'])
-  username = client.Spotify(
+  user_data = client.Spotify(
     auth=response['access_token']
-  ).me()['id']
-  response['username'] = username
+  ).me()
+  response['display_name'] = user_data['display_name'] or 'Friend'
   return jsonify(response)
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(debug=True, threaded=True)
