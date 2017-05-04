@@ -10,7 +10,7 @@ spotify_auth = oauth2.SpotifyOAuth(
   os.environ.get('SPOTIPY_CLIENT_ID'),
   os.environ.get('SPOTIPY_CLIENT_SECRET'),
   os.environ.get('SPOTIPY_REDIRECT_URI'),
-  scope='user-library-read'
+  scope='user-library-read playlist-read-private'
 )
 
 @app.route('/login')
